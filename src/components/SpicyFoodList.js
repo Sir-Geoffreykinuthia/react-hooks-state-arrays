@@ -22,21 +22,50 @@ function SpicyFoodList() {
   };
 
 
-
+// (24-30,-39-47)
 //  commenting the code here to try something new with the code but still valid
   // function handleAddFood() {
   //   const newFood = getNewRandomSpicyFood();
   //   console.log(newFood);
   // }
 
+
+function handleLiClick(id){
+  // creating a new array using .filter method.
+  const newFoodArray =foods.filter((food) => food.id);
+  [1,2,3].filter((number) => number !== 3);
+  setFoods(newFoodArray);
+}
+// 39-47 (works)
   // will be updating my foodList variable to only map over foods,newspicyfoods already exists
+  // const foodList = foods.map((food) => (
+  //   // setting an event handler for a click event.
+  //   <li key={food.id} onClick={() => handleLiClick(food.id)}>
+  //     {food.name} | Heat: {food.heatLevel} | Cuisine: {food.cuisine}
+  //   </li>
+  // ));
+
+
+  // awesome this method also works /
+  // removes the food items from the disply on the screen by clicking the food item
+  function handleRemoveFood(id){
+    // removing the food item from the food arra using .filter 
+    const updatedFoods=foods.filter((food) =>food.id !==id);
+    setFoods(updatedFoods);
+  }
+
+
   const foodList = foods.map((food) => (
-    <li key={food.id}>
+    <li key={food.id} onClick={() => handleRemoveFood(food.id)}>
       {food.name} | Heat: {food.heatLevel} | Cuisine: {food.cuisine}
     </li>
-  ));
-
-
+  ))
+// function handleLiClick(id){
+//   // creating a new array using .filter method.
+//   const newFoodArray =foods.filter((food) => food.id);
+//   [1,2,3].filter((number) => number !== 3);
+//   setFoods(newFoodArray);
+// }
 //since am not adding new foods to the component, will be removing the Add New Food for while
   return (
     <div>
